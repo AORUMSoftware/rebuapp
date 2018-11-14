@@ -2,30 +2,42 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
 
-	<h:head>
-		<title>Rebu App</title>
-		
-		<!-- Compiled and minified CSS -->
-    	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
-		
-		<!--Import Google Icon Font-->
-      	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-      	
-	    <!--Let browser know website is optimized for mobile-->
-	    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	</h:head>
-	
 	<h:body>
 	
-		<h1>#{infoBean.getAppName()}</h1>
+		<ui:composition template="layout/base_layout.xhtml">
+			
+			<ui:define name="customHead">
+				<link rel="stylesheet" href="css/map.css" />
+	   		</ui:define>
 		
-		<h3>#{infoBean.getCopyright()}</h3>
-		
-		<!-- Compiled and minified JavaScript -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-		
+			<ui:define name="content">
+			
+			    <!--The div element for the map -->
+			    <div id="map"></div>
+                
+    		</ui:define>
+    		
+    		<ui:define name="scriptsArea">
+    		
+	   		    <script
+	   		    	id="map-controller"
+	   		    	type="text/javascript"
+	   		    	data-url='/api/Map'
+	    			src="js/map.js">
+			    </script>
+			    
+	    		<script 
+	    			type="text/javascript"
+	    			src="https://maps.googleapis.com/maps/api/js?key=API_KEY_HERE&amp;sensor=false&amp;callback=initMap">
+	    		</script>   
+    		
+    		</ui:define>
+    		
+		</ui:composition>
+	
 	</h:body>
 	
 </html>
