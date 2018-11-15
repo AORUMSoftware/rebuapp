@@ -2,7 +2,8 @@
     position: absolute;
     left: 50%;
     top: 50%;
-    padding-bottom: 40px;
+    min-width: 400px;
+    padding-bottom: 20px;
     padding-right: 20px;
     padding-left: 20px;
     -webkit-transform: translate(-50%, -50%);
@@ -12,7 +13,21 @@
     -moz-box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.75);
     box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.75);
 }
-#btnEntrar{
-    position: absolute;
-    right: 25px;
+.btnCentralizar{
+    display: table;
+    margin: 0 auto;
+}
+#backlogin{
+    background: url(../img/back.jpg) bottom center no-repeat;
+    height: 100vh;
+    width: 100%;
+}
+.centerText{
+    text-align: center;
+}
+#cadastrar{
+    color: black;
+}
+.marginTop10{
+    margin-top: 20px
 }
