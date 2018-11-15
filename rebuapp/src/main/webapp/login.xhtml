@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+
+	<h:body>
+	
+		<ui:composition template="layout/base_layout.xhtml">
+		
+			<ui:define name="content">
+			
+				<h2>Login</h2>
+				
+				<div id="titulo_login">Acesso Restrito</div>
+                <div id="subtitulo_login">Apenas Pessoas autorizadas podem  acessar este painel</div>
+                
+                <h:form id="formLogin" enctype="multipart/form-data">
+                
+                    <p:growl autoUpdate="true" id="messages" />
+  
+                    <p:panelGrid styleClass="semBorda" columns="2">
+                    
+						<h:outputLabel value="Email: " />
+						<h:inputText value="#{clienteLogadoBean.email}" size="37" />
+					
+						
+						<h:outputLabel value="Senha: " />
+						<h:inputSecret value="#{clienteLogadoBean.senha}" size="37" />
+				
+                    </p:panelGrid>
+  
+                    <br />
+                    <br />
+                    
+					<h:commandButton action="#{clienteLogadoBean.doLogin()}" value="Login" />
+					
+				</h:form>
+
+	   		</ui:define>
+	    		
+		</ui:composition>
+	
+	</h:body>
+	
+</html>

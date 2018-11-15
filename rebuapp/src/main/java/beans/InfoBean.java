@@ -17,4 +17,8 @@ public class InfoBean {
 		return "Todos os direitos reservados © - " + Year.now().getValue() + " - Rebu Software.";
 	}
 	
+	public String getApiGmap() {
+		return "AIzaSyAuAgF-JTMAS3EpwrrqGV5SE9CFq0-M2cc";
+	}
+	
 }

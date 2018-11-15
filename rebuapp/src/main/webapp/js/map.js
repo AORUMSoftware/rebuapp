@@ -5,8 +5,6 @@ window.initMap = function() {
 
 	let url = window.location.origin + "/rebuapp" + dataUrl
 	
-	console.log(url)
-	
 	let jqxhr = $.get(url, function(data) {
 		
 		// On Sucess data
