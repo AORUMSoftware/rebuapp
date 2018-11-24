@@ -7,29 +7,41 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
     <!-- Compiled and minified JavaScript -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" >
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <link href="css/main.css" rel="stylesheet">
+
             
     <title>Rebu</title>
 </head>
-<body >
+<body id="backlogin">
     <div id="centerFormDiv">
         <div class="row">
+            <h4 class="centerText">Login</h4>
             <form class="col s12">
-            <div class="row">
-                <div class="input-field col s12">
-                    <input id="email" type="email" class="validate">
-                    <label for="email">Email</label>
-                </div>
-            </div>
+
                 <div class="row">
-                <div class="input-field col s12">
-                    <input id="password" type="password" class="validate">
-                    <label for="password">Senha</label>
+                    
+                    <div class="input-field col s12">
+                        <i class="material-icons iconis prefix">account_box</i>
+                        <input id="email" type="email" class="validate">
+                        <label for="email">Email</label>
+                    </div>
                 </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons iconis prefix">enhanced_encryption</i>
+                        <input id="password" type="password" class="validate">
+                        <label for="password">Senha</label>
+                    </div>
+                </div>
+                <a id="cadastrar" href="cadastro.html">Cadastrar-se</a>
+                <div class="marginTop10">
+                        <button class="btn waves-effect waves-light btnCentralizar" name="action">Entrar
+                            <i class="material-icons right">send</i>
+                        </button>
                 </div>
                 
-                <a class="waves-effect waves-light btn" id="btnEntrar">Entrar</a>
             </form>
             </div>
 
