@@ -14,7 +14,7 @@
 			
 				<h2>Login</h2>
 				
-				<div id="titulo_login">Acesso Restrito - Cliente</div>
+				<div id="titulo_login">Acesso Restrito - Entregador</div>
                 <div id="subtitulo_login">Apenas Pessoas autorizadas podem  acessar este painel</div>
                 
                 <h:form id="formLogin" enctype="multipart/form-data">
@@ -24,25 +24,25 @@
                     <p:panelGrid styleClass="semBorda" columns="2">
                     
 						<h:outputLabel value="Email: " />
-						<h:inputText value="#{clienteLogadoBean.email}" size="37" />
+						<h:inputText value="#{entregadorLogadoBean.email}" size="37" />
 					
 						
 						<h:outputLabel value="Senha: " />
-						<h:inputSecret value="#{clienteLogadoBean.senha}" size="37" />
+						<h:inputSecret value="#{entregadorLogadoBean.senha}" size="37" />
 				
                     </p:panelGrid>
   
                     <br />
                     <br />
                     
-					<h:commandButton action="#{clienteLogadoBean.doLogin()}" value="Login" />
+					<h:commandButton action="#{entregadorLogadoBean.doLogin()}" value="Login" />
 					
 				</h:form>
 				
-				<a href="/rebuapp/login-entregador.xhtml">Logar como Entregador</a>		
-				
+				<a href="/rebuapp/login.xhtml">Logar como Cliente</a>
+
 	   		</ui:define>
-	   		
+	    		
 	   		<ui:define name="scriptsArea">
 	   		
 				<script src="js/qs.js" type="text/javascript"></script>	

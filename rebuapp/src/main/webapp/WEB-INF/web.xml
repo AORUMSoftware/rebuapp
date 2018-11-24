@@ -13,24 +13,38 @@
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
-	<!-- login filter -->
+	<!-- login filter for cliente -->
 	<filter>
 		<filter-name>LoginFilter</filter-name>
 		<filter-class>filters.LoginFilter</filter-class>
 		<init-param>
 			<param-name>excludedUrls</param-name>
 			<!-- Comma separated list of excluded servlets -->
-			<param-value>/login.xhtml</param-value>
+			<param-value>/login-entregador.xhtml,/login.xhtml</param-value>
 		</init-param>
 	</filter>
 	<filter-mapping>
 		<filter-name>LoginFilter</filter-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>/cliente/*</url-pattern>
+	</filter-mapping>
+	<!-- login filter for entregador -->
+	<filter>
+		<filter-name>LoginEntregadorFilter</filter-name>
+		<filter-class>filters.LoginEntregadorFilter</filter-class>
+		<init-param>
+			<param-name>excludedUrls</param-name>
+			<!-- Comma separated list of excluded servlets -->
+			<param-value>/login-entregador.xhtml,/login.xhtml</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>LoginEntregadorFilter</filter-name>
+		<url-pattern>/entregador/*</url-pattern>
 	</filter-mapping>
 	<session-config>
 		<session-timeout>60</session-timeout>
 	</session-config>
 	<welcome-file-list>
-		<welcome-file>index.xhtml</welcome-file>
+		<welcome-file>login.xhtml</welcome-file>
 	</welcome-file-list>
 </web-app>

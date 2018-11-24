@@ -4,44 +4,44 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
-import models.Cliente;
-import repositories.ClienteRep;
+import models.Entregador;
+import repositories.EntregadorRep;
 import utils.SessionContext;
 
 @ManagedBean
 @SessionScoped
-public class ClienteLogadoBean {
+public class EntregadorLogadoBean {
 
 	private String email = "";
 	private String senha = "";
-	private Cliente cliente;
+	private Entregador entregador;
 
 	public String doLogin() {
 		try {
 			
-			ClienteRep repository = new ClienteRep();
+			EntregadorRep repository = new EntregadorRep();
 
-			cliente = repository.isReadyToLogin(email, senha);
+			entregador = repository.isReadyToLogin(email, senha);
 
-			if (cliente == null) {
+			if (entregador == null) {
 				FacesContext.getCurrentInstance().validationFailed();
-				return "/login.xhtml?code=1";
+				return "";
 			}
 
-			SessionContext.getInstance().setAttribute("clienteLogado", cliente);
-			return "/cliente/index.xhtml?faces-redirect=true";
+			SessionContext.getInstance().setAttribute("entregadorLogado", entregador);
+			return "/entregador/index.xhtml?faces-redirect=true";
 			
 		} catch (Exception e) {
 			FacesContext.getCurrentInstance().validationFailed();
 			e.printStackTrace();
-			return "/login.xhtml?code=2";
+			return "";
 		}
 	}
 
 	public String doLogout() {
-		cliente = null;
+		entregador = null;
 		SessionContext.getInstance().encerrarSessao();
-		return "/login.xhtml?faces-redirect=true";
+		return "/login-entregador.xhtml?faces-redirect=true";
 	}
 
 	public String getEmail() {
@@ -60,11 +60,12 @@ public class ClienteLogadoBean {
 		this.senha = senha;
 	}
 
-	public Cliente getCliente() {
-		return cliente;
+	public Entregador getEntregador() {
+		return entregador;
 	}
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+	public void setEntregador(Entregador entregador) {
+		this.entregador = entregador;
 	}
 }
+
