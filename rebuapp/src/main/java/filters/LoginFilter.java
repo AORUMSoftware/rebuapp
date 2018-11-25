@@ -25,12 +25,30 @@ public class LoginFilter implements Filter {
 
 	}
 
+	public static Cliente getUserLogged(ServletRequest request) {
+
+		Cliente user = null;
+		
+		HttpSession sess = ((HttpServletRequest) request).getSession(false);
+
+		if (sess != null) {
+			user = (Cliente) sess.getAttribute("clienteLogado");
+		}
+
+		if (user == null) {
+			return null;
+		}
+
+		return user;
+
+	}
+
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 
 		String path = ((HttpServletRequest) request).getServletPath();
 		if (!excludedUrls.contains(path)) {
-			
+
 			Cliente user = null;
 			HttpSession sess = ((HttpServletRequest) request).getSession(false);
 
@@ -44,9 +62,8 @@ public class LoginFilter implements Filter {
 			} else {
 				chain.doFilter(request, response);
 			}
-			
-		}
-		else
+
+		} else
 			chain.doFilter(request, response);
 	}
 

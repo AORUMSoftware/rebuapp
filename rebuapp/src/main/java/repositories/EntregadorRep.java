@@ -1,5 +1,7 @@
 package repositories;
 
+import javax.persistence.NoResultException;
+
 import models.Entregador;
 
 public class EntregadorRep extends Repository<Entregador> {
@@ -16,6 +18,11 @@ public class EntregadorRep extends Repository<Entregador> {
 			}
 
 			return null;
+
+		} catch (NoResultException noResultEx) {
+			
+			return null;
+			
 		} catch (Exception e) {
 
 			e.printStackTrace();

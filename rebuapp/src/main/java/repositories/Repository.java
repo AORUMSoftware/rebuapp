@@ -4,7 +4,7 @@ import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import utils.ConnectionFactory;
+import utils.JPAUtils;
 
 @SuppressWarnings("unchecked")
 public class Repository<TEntity> {
@@ -14,15 +14,15 @@ public class Repository<TEntity> {
     
 	public Repository() {
         this.persistentClass = (Class<TEntity>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
-        manager = ConnectionFactory.getEntityManager();
+        manager = JPAUtils.getEntityManager();
     }
     
     public void open() {
-        manager = ConnectionFactory.getEntityManager();
+        manager = JPAUtils.getEntityManager();
     }
     
     public void close() {
-    	ConnectionFactory.close();
+    	JPAUtils.close();
     }
     
     public void insert(TEntity entity) {

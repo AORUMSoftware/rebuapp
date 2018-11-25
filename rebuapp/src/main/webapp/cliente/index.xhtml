@@ -10,7 +10,7 @@
 		<ui:composition template="../layout/base_layout.xhtml">
 			
 			<ui:define name="customHead">
-				<link rel="stylesheet" href="../css/map.css" />
+				<link rel="stylesheet" href="../resources/css/map.css" />
 	   		</ui:define>
 		
 			<ui:define name="content">
@@ -23,6 +23,12 @@
 			    <!--The div element for the map -->
 			    <div id="map"></div>
                 
+                <div id="order-list">
+                
+                	Lista de encomendas cadastradas
+                	
+                </div>
+                
     		</ui:define>
     		
     		<ui:define name="scriptsArea">
@@ -30,8 +36,8 @@
 	   		    <script
 	   		    	id="map-controller"
 	   		    	type="text/javascript"
-	   		    	data-url='/api/Map'
-	    			src="../js/map.js">
+	   		    	data-url='/api/Map?destination=customer'
+	    			src="../resources/js/map.js">
 			    </script>
 			    
 	    		<script 

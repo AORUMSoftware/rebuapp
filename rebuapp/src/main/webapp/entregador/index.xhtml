@@ -10,7 +10,7 @@
 		<ui:composition template="../layout/base_layout.xhtml">
 			
 			<ui:define name="customHead">
-				<link rel="stylesheet" href="../css/map.css" />
+				<link rel="stylesheet" href="../resources/css/map.css" />
 	   		</ui:define>
 		
 			<ui:define name="content">
@@ -30,8 +30,8 @@
 	   		    <script
 	   		    	id="map-controller"
 	   		    	type="text/javascript"
-	   		    	data-url='/api/Map'
-	    			src="../js/map.js">
+	   		    	data-url='/api/Map?destination=deliveryman'
+	    			src="../resources/js/map.js">
 			    </script>
 			    
 	    		<script 

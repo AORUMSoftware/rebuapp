@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import models.Cliente;
 import models.Entregador;
 
 public class LoginEntregadorFilter implements Filter {
@@ -22,6 +23,24 @@ public class LoginEntregadorFilter implements Filter {
 
 	public void destroy() {
 		// TODO Auto-generated method stub
+
+	}
+
+	public static Entregador getUserLogged(ServletRequest request) {
+
+		Entregador user = null;
+		
+		HttpSession sess = ((HttpServletRequest) request).getSession(false);
+
+		if (sess != null) {
+			user = (Entregador) sess.getAttribute("entregadorLogado");
+		}
+
+		if (user == null) {
+			return null;
+		}
+
+		return user;
 
 	}
 
