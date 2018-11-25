@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+	<h:head></h:head> 
+	<h:body>
+		<h2>Cadastro de Cliente</h2>
+        <h:form id="formCadastroCliente" enctype="multipart/form-data">    
+        	<p:growl autoUpdate="true" id="messages" />
+            <p:panelGrid styleClass="semBorda" columns="2">
+	            <h:outputLabel value="Nome: " />
+				<h:inputText value="#{clienteCadastroBean.cliente.nome}" size="37" />
+				<br/>
+				<h:outputLabel value="DataNascimento: " />
+				<h:inputText value="#{clienteCadastroBean.cliente.dataNascimento}" size="37" />
+				<br/>
+				<h:outputLabel value="Endereco: " />
+				<h:inputText value="#{clienteCadastroBean.cliente.endereco}" size="37" />
+				<br/>
+				<h:outputLabel value="Email: " />
+				<h:inputText value="#{clienteCadastroBean.cliente.email}" size="37" />
+				<br/>
+				<h:outputLabel value="Senha: " />
+				<h:inputSecret value="#{clienteCadastroBean.cliente.senha}" size="37" />
+				<br/>
+		   	</p:panelGrid>
+		
+			<br />
+		   	<br />
+                
+			<h:commandButton action="#{clienteCadastroBean.gravar()}" value="Gravar" />
+			<h:commandButton action="#{clienteCadastroBean.cancelar()}" value="Cancelar" />
+		   	
+	
+		</h:form>
+	</h:body> 
+</html>
