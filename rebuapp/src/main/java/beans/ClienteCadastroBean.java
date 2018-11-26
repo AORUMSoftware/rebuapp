@@ -12,6 +12,7 @@ import utils.SessionContext;
 @SessionScoped
 public class ClienteCadastroBean {
 	
+	
 	private Cliente cliente;
 	private ClienteRep rep;
 	

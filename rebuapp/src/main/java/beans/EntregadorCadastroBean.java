@@ -11,6 +11,7 @@ import repositories.EntregadorRep;
 @SessionScoped
 public class EntregadorCadastroBean {
 	
+	
 	private Entregador entregador;
 	private EntregadorRep rep;
 	
