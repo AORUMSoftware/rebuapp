@@ -1,7 +1,7 @@
 package repositories;
 
-import java.util.List;
-import javax.persistence.*;
+import javax.persistence.NoResultException;
+
 import models.Cliente;
 
 public class ClienteRep extends Repository<Cliente> {
@@ -19,6 +19,10 @@ public class ClienteRep extends Repository<Cliente> {
 			}
 
 			return null;
+		} catch (NoResultException noResultEx) {
+			
+			return null;
+			
 		} catch (Exception e) {
 
 			e.printStackTrace();

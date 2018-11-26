@@ -37,7 +37,13 @@ public class Cliente {
 	private List<SolicitacaoEntrega> solicitacoes;
 	
 	public Cliente() { }
-	
+
+	public List<SolicitacaoEntrega> getSolicitacoes() {
+		return solicitacoes;
+	}
+	public void setSolicitacoes(List<SolicitacaoEntrega> solicitacoes) {
+		this.solicitacoes = solicitacoes;
+	}
 	public int getId() {
 		return id;
 	}
