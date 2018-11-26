@@ -13,16 +13,11 @@ import utils.SessionContext;
 public class ClienteCadastroBean {
 	
 	
-	private Cliente cliente;
+	private Cliente cliente = new Cliente();
 	private ClienteRep rep;
 	
 	public Cliente getCliente() {
 		return cliente;
-	}
-	
-	public String novoCliente() {
-		cliente = new Cliente();
-		return "cadastro";
 	}
 	
 	public String gravar() {

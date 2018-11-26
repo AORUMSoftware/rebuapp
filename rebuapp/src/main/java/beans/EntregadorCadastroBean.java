@@ -12,16 +12,11 @@ import repositories.EntregadorRep;
 public class EntregadorCadastroBean {
 	
 	
-	private Entregador entregador;
+	private Entregador entregador = new Entregador();
 	private EntregadorRep rep;
 	
 	public EntregadorCadastroBean() {
 		rep = new EntregadorRep();
-	}
-	
-	public String novoEntregador() {
-		entregador = new Entregador();
-		return "cadastro-entregador";
 	}
 	
 	public String gravar() {
