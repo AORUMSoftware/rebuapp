@@ -1,54 +1,135 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 
-	<h:body>
-	
-		<ui:composition template="../layout/base_layout.xhtml">
-			
-			<ui:define name="customHead">
-				<link rel="stylesheet" href="../resources/css/map.css" />
-	   		</ui:define>
-		
-			<ui:define name="content">
-			
-				<h3>Cliente Logado: #{clienteLogadoBean.cliente.nome}</h3>
-				<h:form>
-					<h:commandLink action="#{clienteLogadoBean.doLogout()}" value="Sair" />
+<h:body>
+
+	<ui:composition template="../layout/base_layout.xhtml">
+
+		<ui:define name="customHead">
+			<link rel="stylesheet" href="../resources/css/map.css" />
+		</ui:define>
+
+		<ui:define name="content">
+
+			<nav>
+			<div class="nav-wrapper cyan">
+				<a href="#" class="brand-logo" style="margin-left: 20px;">Bem-Vindo,
+					#{clienteLogadoBean.cliente.nome}!</a>
+				<ul id="nav-mobile" class="right hide-on-med-and-down">
+					<li><h:form>
+							<h:commandLink
+								action="#{clienteLogadoBean.novaSoliciacaoEntrega()}"
+								value="Criar nova solicitação" />
+						</h:form></li>
+					<li><h:form>
+							<h:commandLink
+								action="/cliente/historico.xhtml?faces-redirect=true"
+								value="Histórico" />
+						</h:form></li>
+					<li><h:form>
+							<h:commandLink action="#{clienteLogadoBean.doLogout()}"
+								value="Sair" />
+						</h:form></li>
+				</ul>
+			</div>
+			</nav>
+
+			<!--The div element for the map -->
+			<div id="map"></div>
+
+			<div id="order-list" class="container">
+				<h:form
+					rendered="#{cadastroEncomendaBean.solicitacoesCustomer.size() > 0}">
+
+					<h5 class="h4">Lista de solicitações pendentes e a caminho</h5>
+					
+					<h:dataTable id="sol-table" var="solicitacao" styleClass="responsive-table highlight"
+						value="#{cadastroEncomendaBean.solicitacoesCustomer}">
+
+						<h:column>
+
+							<f:facet name="header">Nº</f:facet>
+							<h:outputText value="#{solicitacao.id}" />
+
+						</h:column>
+
+						<h:column>
+
+							<f:facet name="header">Data</f:facet>
+							<h:outputText value="#{solicitacao.data}" />
+
+						</h:column>
+
+						<h:column>
+
+							<f:facet name="header">Status</f:facet>
+							<h:outputText value="#{solicitacao.status}" />
+
+						</h:column>
+
+						<h:column>
+
+							<f:facet name="header">Encomenda</f:facet>
+							<h:outputText value="#{solicitacao.descricaoEncomenda}" />
+
+						</h:column>
+
+						<h:column>
+
+							<f:facet name="header">Ações</f:facet>
+							<h:commandLink
+								rendered="#{solicitacao.status.toString()=='PENDENTE'}"
+								id="remove"
+								action="#{cadastroEncomendaBean.deletar(solicitacao)}"
+								styleClass="waves-effect waves-light red btn">
+								<i class="material-icons">delete</i>
+							</h:commandLink>
+
+							<h:commandLink
+								rendered="#{solicitacao.status.toString()=='A_CAMINHO'}"
+								id="entregar"
+								action="#{cadastroEncomendaBean.entregar(solicitacao)}"
+								styleClass="waves-effect waves-light cyan btn">
+								<i class="material-icons">check</i>
+							</h:commandLink>
+
+						</h:column>
+
+					</h:dataTable>
+
 				</h:form>
-			
-			    <!--The div element for the map -->
-			    <div id="map"></div>
-                
-                <div id="order-list">
-                
-                	Lista de encomendas cadastradas
-                	
-                </div>
-                
-    		</ui:define>
-    		
-    		<ui:define name="scriptsArea">
 
-	   		    <script
-	   		    	id="map-controller"
-	   		    	type="text/javascript"
-	   		    	data-url='/api/Map?destination=customer'
-	    			src="../resources/js/map.js">
-			    </script>
-			    
-	    		<script 
-	    			type="text/javascript"
-	    			src='https://maps.googleapis.com/maps/api/js?key=#{infoBean.apiGmap}&amp;sensor=false&amp;callback=initMap'>
-	    		</script>   
-    		
-    		</ui:define>
-    		
-		</ui:composition>
-	
-	</h:body>
-	
+			</div>
+
+			<footer class="page-footer cyan">
+			<div class="footer-copyright">
+				<div class="container">
+					#{infoBean.copyright}
+				</div>
+			</div>
+			</footer>
+
+		</ui:define>
+
+		<ui:define name="scriptsArea">
+
+			<script id="map-controller" type="text/javascript"
+				data-url='/api/Map?destination=customer'
+				src="../resources/js/map.js">
+		    </script>
+
+			<script type="text/javascript"
+				src='https://maps.googleapis.com/maps/api/js?key=#{infoBean.apiGmap}&amp;sensor=false&amp;callback=initMap'>
+    		</script>
+
+		</ui:define>
+
+	</ui:composition>
+
+</h:body>
+
 </html>

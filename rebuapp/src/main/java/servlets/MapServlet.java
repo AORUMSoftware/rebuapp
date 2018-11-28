@@ -12,12 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import filters.LoginEntregadorFilter;
 import filters.LoginFilter;
 import models.Cliente;
 import models.Entregador;
 import models.SolicitacaoEntrega;
 import repositories.SolicitacaoEntregaRep;
+import utils.SessionContext;
 
 @WebServlet("/api/Map")
 public class MapServlet extends HttpServlet {
@@ -38,22 +38,22 @@ public class MapServlet extends HttpServlet {
 
 		case "customer":
 
-			Cliente c = LoginFilter.getUserLogged(request);
-			
+			Cliente c = (Cliente) LoginFilter.getUserLogged(request, "clienteLogado");
+
 			if (c != null) {
 
 				SolicitacaoEntregaRep customerOrderRepository = new SolicitacaoEntregaRep();
-				
+
 				List<SolicitacaoEntrega> entregas = customerOrderRepository.getOrdersByCustomer(c);
-				
+
 				// carregar todas as encomendas
 				// Lista encomendas ativas
 				// Botao para criar nova encomenda
 				JSONObject root = new JSONObject();
 				JSONArray arry = new JSONArray();
-				
+
 				for (SolicitacaoEntrega e : entregas) {
-					
+
 					JSONObject element = new JSONObject();
 					element.put("id", e.getId());
 					element.put("status", e.getStatus());
@@ -63,45 +63,117 @@ public class MapServlet extends HttpServlet {
 					element.put("latDestino", e.getLatDestino());
 					element.put("data", e.getData());
 					element.put("descricaoEncomenda", e.getDescricaoEncomenda());
-					
+
 					Cliente cli = e.getCliente();
 					if (cli != null)
 						element.put("cliente_id", cli.getId());
-					
+
 					Entregador ent = e.getEntregador();
 					if (ent != null)
 						element.put("entregador_id", ent.getId());
-					
+
 					arry.put(element);
 				}
-				
+
 				root.put("result", arry);
 				response.getWriter().append(root.toString());
 
 			} else {
 				response.getWriter().append("{\"result\":[]}");
 			}
-			
+
 			break;
 
 		case "deliveryman":
 
-			Entregador e = LoginEntregadorFilter.getUserLogged(request);
+			Entregador ent = (Entregador) LoginFilter.getUserLogged(request, "entregadorLogado");
 
-			if (e != null) {
+			if (ent != null) {
 
-				// carregar encomendas aceitas pelo entregador
-				// Entregador entra na tela principal
-				// Terá uma lista de encomendas
-				// Clica para atender a solicitação
-				// A encomenda passa a aparecer no mapa
-				JSONObject jsonBuilder2 = new JSONObject();
-				jsonBuilder2.put("deliveryman", e.getNome());
-				response.getWriter().append(jsonBuilder2.toString());
+				SolicitacaoEntregaRep orderRepository = new SolicitacaoEntregaRep();
+
+				List<SolicitacaoEntrega> entregas = orderRepository.getOrdersByDeliveryman(ent);
+
+				// carregar todas as encomendas
+				// Lista encomendas ativas
+				// Botao para criar nova encomenda
+				JSONObject root = new JSONObject();
+				JSONArray arry = new JSONArray();
+
+				for (SolicitacaoEntrega e : entregas) {
+
+					JSONObject element = new JSONObject();
+					element.put("id", e.getId());
+					element.put("status", e.getStatus());
+					element.put("lngOrigem", e.getLngOrigem());
+					element.put("latOrigem", e.getLatOrigem());
+					element.put("lngDestino", e.getLngDestino());
+					element.put("latDestino", e.getLatDestino());
+					element.put("data", e.getData());
+					element.put("descricaoEncomenda", e.getDescricaoEncomenda());
+
+					Cliente cli = e.getCliente();
+					if (cli != null)
+						element.put("cliente_id", cli.getId());
+
+					Entregador et = e.getEntregador();
+					if (et != null)
+						element.put("entregador_id", et.getId());
+
+					arry.put(element);
+				}
+
+				root.put("result", arry);
+				response.getWriter().append(root.toString());
+			} else {
+				response.getWriter().append("{\"result\":[]}");
+			}
+			break;
+
+		case "getpodeaceitar":
+
+			Entregador ent1 = (Entregador) LoginFilter.getUserLogged(request, "entregadorLogado");
+
+			if (ent1 != null) {
+
+				SolicitacaoEntregaRep orderRepository = new SolicitacaoEntregaRep();
+
+				List<SolicitacaoEntrega> entregas = orderRepository.getTodasPendentes();
+
+				JSONObject root = new JSONObject();
+				JSONArray arry = new JSONArray();
+
+				for (SolicitacaoEntrega e : entregas) {
+
+					JSONObject element = new JSONObject();
+					element.put("id", e.getId());
+					element.put("status", e.getStatus());
+					element.put("lngOrigem", e.getLngOrigem());
+					element.put("latOrigem", e.getLatOrigem());
+					element.put("lngDestino", e.getLngDestino());
+					element.put("latDestino", e.getLatDestino());
+					element.put("data", e.getData());
+					element.put("descricaoEncomenda", e.getDescricaoEncomenda());
+
+					Cliente cli = e.getCliente();
+					if (cli != null)
+						element.put("cliente_id", cli.getId());
+
+					Entregador et = e.getEntregador();
+					if (et != null)
+						element.put("entregador_id", et.getId());
+
+					arry.put(element);
+				}
+
+				root.put("result", arry);
+
+				response.getWriter().append(root.toString());
 				
 			} else {
 				response.getWriter().append("{\"result\":[]}");
 			}
+
 			break;
 
 		default:

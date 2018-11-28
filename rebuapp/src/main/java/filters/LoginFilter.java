@@ -25,14 +25,14 @@ public class LoginFilter implements Filter {
 
 	}
 
-	public static Cliente getUserLogged(ServletRequest request) {
+	public static Object getUserLogged(ServletRequest request, String attr) {
 
-		Cliente user = null;
+		Object user = null;
 		
 		HttpSession sess = ((HttpServletRequest) request).getSession(false);
 
 		if (sess != null) {
-			user = (Cliente) sess.getAttribute("clienteLogado");
+			user = sess.getAttribute(attr);
 		}
 
 		if (user == null) {

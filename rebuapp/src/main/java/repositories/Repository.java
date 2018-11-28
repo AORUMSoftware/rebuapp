@@ -25,6 +25,14 @@ public class Repository<TEntity> {
     	JPAUtils.close();
     }
     
+    public void merge(TEntity entity) {
+
+        manager.getTransaction().begin();
+        manager.merge(entity);
+        manager.getTransaction().commit();
+        
+    }
+    
     public void insert(TEntity entity) {
         
         manager.getTransaction().begin();

@@ -2,6 +2,7 @@ package beans;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import models.Cliente;
@@ -16,6 +17,10 @@ public class ClienteLogadoBean {
 	private String senha = "";
 	private Cliente cliente;
 	private String errormessage = "";
+	
+	public String novaSoliciacaoEntrega() {
+		return "/cliente/cadastro-encomenda.xhtml?faces-redirect=true";
+	}
 	
 	public String getErrorMessage() {
 		return errormessage;

@@ -6,7 +6,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pe="http://primefaces.org/ui/extensions">
 
-<h:body id="backlogin">
+<h:body>
 
 	<ui:composition template="layout/base_layout.xhtml">
 
@@ -16,59 +16,64 @@
 
 		<ui:define name="content">
 
-			<div id="centerFormDiv">
-			
-				<div class="row">
-					
-					<h4 class="centerText">Login para Clientes</h4>
-					
-					<h:outputText value="#{clienteLogadoBean.errorMessage}" />
-					
-					<h:form id="formLogin" enctype="multipart/form-data" class="col s12">
+			<div class="backlogin">
 
-						<div class="row">
+				<div class="centerFormDiv">
 
-							<div class="input-field col s12">
-								<i class="material-icons iconis prefix">account_box</i> 
-								
-								<h:inputText 
-									value="#{clienteLogadoBean.email}" 
-									id="email" 
-									type="email" 
-									class="validate"  />
-								
-								<label for="email">Email</label>
-							</div>
-							
-						</div>
-						
-						<div class="row">
-						
-							<div class="input-field col s12">
-								<i class="material-icons iconis prefix">enhanced_encryption</i>
-								
-								<h:inputSecret 
-									value="#{clienteLogadoBean.senha}" 
-									id="password" 
-									class="validate"  />
-								
-								<label for="password">Senha</label>
-							</div>
-							
-						</div>
-						
-						<a class="color_black" href="/rebuapp/cadastro.xhtml">Cadastrar-se</a> ou
-						<a class="color_black" href="/rebuapp/login-entregador.xhtml">entrar como entregador</a>
-						<div class="marginTop10">
-							
-							<h:commandButton 
-								class="btn waves-effect waves-light btnCentralizar" 
-								action="#{clienteLogadoBean.doLogin()}" 
-								value="Entrar" />
-						</div>
+					<div class="row">
 
-					</h:form>
-					
+						<h4 class="centerText">Login para Clientes</h4>
+
+						<h:outputText value="#{clienteLogadoBean.errorMessage}" />
+
+						<h:form id="formLogin" enctype="multipart/form-data"
+							styleClass="col s12">
+
+							<p:growl autoUpdate="true" id="messages" />
+							<p:panelGrid styleClass="semBorda" columns="2">
+							
+								<div class="row">
+
+									<div class="input-field col s12">
+										<i class="material-icons iconis prefix">account_box</i>
+
+										<h:inputText value="#{clienteLogadoBean.email}" id="email"
+											type="email" styleClass="validate" />
+
+										<label for="email">Email</label>
+									</div>
+
+								</div>
+
+								<div class="row">
+
+									<div class="input-field col s12">
+										<i class="material-icons iconis prefix">enhanced_encryption</i>
+
+										<h:inputSecret value="#{clienteLogadoBean.senha}"
+											id="password" styleClass="validate" />
+
+										<label for="password">Senha</label>
+									</div>
+
+								</div>
+
+								<a class="color_black" href="/rebuapp/cadastro.xhtml">Cadastrar-se</a> ou
+								<a class="color_black" href="/rebuapp/login-entregador.xhtml">entrar
+									como entregador</a>
+								<div class="marginTop10">
+
+									<h:commandButton
+										styleClass="btn waves-effect waves-light btnCentralizar"
+										action="#{clienteLogadoBean.doLogin()}" value="Entrar" />
+								</div>
+
+							</p:panelGrid>
+							
+						</h:form>
+
+					</div>
+
 				</div>
 
 			</div>

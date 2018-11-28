@@ -16,63 +16,61 @@
 
 		<ui:define name="content">
 
-			<div id="centerFormDiv">
-			
-				<div class="row">
-					
-					<h4 class="centerText">Login para Entregadores</h4>
-					
-					<h:outputText value="#{entregadorLogadoBean.errorMessage}" />
-					
-					<h:form id="formLogin" enctype="multipart/form-data" class="col s12">
+			<div class="backlogin">
 
-						<div class="row">
+				<div class="centerFormDiv">
 
-							<div class="input-field col s12">
-								<i class="material-icons iconis prefix">account_box</i> 
-								
-								<h:inputText 
-									value="#{entregadorLogadoBean.email}" 
-									id="email" 
-									type="email" 
-									class="validate"  />
-								
-								<label for="email">Email</label>
+					<div class="row">
+
+						<h4 class="centerText">Login para Entregadores</h4>
+
+						<h:outputText value="#{entregadorLogadoBean.errorMessage}" />
+
+						<h:form id="formLogin" enctype="multipart/form-data"
+							class="col s12">
+
+							<div class="row">
+
+								<div class="input-field col s12">
+									<i class="material-icons iconis prefix">account_box</i>
+
+									<h:inputText value="#{entregadorLogadoBean.email}" id="email"
+										type="email" styleClass="validate" />
+
+									<label for="email">Email</label>
+								</div>
+
 							</div>
-							
-						</div>
-						
-						<div class="row">
-						
-							<div class="input-field col s12">
-								<i class="material-icons iconis prefix">enhanced_encryption</i>
-								
-								<h:inputSecret 
-									value="#{entregadorLogadoBean.senha}" 
-									id="password" 
-									class="validate"  />
-								
-								<label for="password">Senha</label>
-							</div>
-							
-						</div>
-						
-						<a class="color_black" href="/rebuapp/cadastro-entregador.xhtml">Cadastrar-se</a> ou
-						<a class="color_black" href="/rebuapp/login.xhtml">entrar como cliente</a>
-						<div class="marginTop10">
-							
-							<h:commandButton 
-								class="btn waves-effect waves-light btnCentralizar" 
-								action="#{entregadorLogadoBean.doLogin()}" 
-								value="Entrar" />
-						</div>
 
-					</h:form>
-					
+							<div class="row">
+
+								<div class="input-field col s12">
+									<i class="material-icons iconis prefix">enhanced_encryption</i>
+
+									<h:inputSecret value="#{entregadorLogadoBean.senha}"
+										id="password" styleClass="validate" />
+
+									<label for="password">Senha</label>
+								</div>
+
+							</div>
+
+							<a class="color_black" href="/rebuapp/cadastro-entregador.xhtml">Cadastrar-se</a> ou
+						<a class="color_black" href="/rebuapp/login.xhtml">entrar como
+								cliente</a>
+							<div class="marginTop10">
+
+								<h:commandButton
+									styleClass="btn waves-effect waves-light btnCentralizar"
+									action="#{entregadorLogadoBean.doLogin()}" value="Entrar" />
+							</div>
+
+						</h:form>
+
+					</div>
+
 				</div>
-
 			</div>
-
 		</ui:define>
 
 		<ui:define name="scriptsArea">

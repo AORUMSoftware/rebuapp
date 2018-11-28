@@ -1,48 +1,105 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 
-	<h:body>
-	
-		<ui:composition template="../layout/base_layout.xhtml">
-			
-			<ui:define name="customHead">
-				<link rel="stylesheet" href="../resources/css/map.css" />
-	   		</ui:define>
-		
-			<ui:define name="content">
-			
-				<h3>Entregador Logado: #{entregadorLogadoBean.entregador.nome}</h3>
-				<h:form>
-					<h:commandLink action="#{entregadorLogadoBean.doLogout()}" value="Sair" />
+<h:body>
+
+	<ui:composition template="../layout/base_layout.xhtml">
+
+		<ui:define name="customHead">
+			<link rel="stylesheet" href="../resources/css/map.css" />
+		</ui:define>
+
+		<ui:define name="content">
+
+			<h3>Entregador Logado: #{entregadorLogadoBean.entregador.nome}</h3>
+			<h:form>
+				<h:commandLink action="#{entregadorLogadoBean.doLogout()}"
+					value="Sair" />
+			</h:form>
+
+			<h:form>
+				<h:commandLink action="/entregador/historico.xhtml?faces-redirect=true"
+					value="Histórico" />
+			</h:form>
+
+			<!--The div element for the map -->
+			<div id="map"></div>
+
+			<div id="order-list">
+
+				<h:form
+					rendered="#{cadastroEncomendaBean.solicitacoesDelivery.size() > 0}">
+
+					<h:dataTable id="sol-table" var="solicitacao"
+						value="#{cadastroEncomendaBean.solicitacoesDelivery}">
+
+						<h:column>
+
+							<f:facet name="header">Nº</f:facet>
+							<h:outputText value="#{solicitacao.id}" />
+
+						</h:column>
+
+						<h:column>
+
+							<f:facet name="header">Data</f:facet>
+							<h:outputText value="#{solicitacao.data}" />
+
+						</h:column>
+
+						<h:column>
+
+							<f:facet name="header">Status</f:facet>
+							<h:outputText value="#{solicitacao.status}" />
+
+						</h:column>
+
+						<h:column>
+
+							<f:facet name="header">Encomenda</f:facet>
+							<h:outputText value="#{solicitacao.descricaoEncomenda}" />
+
+						</h:column>
+
+						<h:column>
+
+							<f:facet name="header">Ações</f:facet>
+							<h:commandLink id="aceitar"
+								action="#{cadastroEncomendaBean.aceitar(solicitacao)}"
+								styleClass="waves-effect waves-light green btn">
+								<i class="material-icons">check</i>
+							</h:commandLink>
+
+						</h:column>
+
+					</h:dataTable>
+
 				</h:form>
-				
-			    <!--The div element for the map -->
-			    <div id="map"></div>
-                
-    		</ui:define>
-    		
-    		<ui:define name="scriptsArea">
 
-	   		    <script
-	   		    	id="map-controller"
-	   		    	type="text/javascript"
-	   		    	data-url='/api/Map?destination=deliveryman'
-	    			src="../resources/js/map.js">
+			</div>
+
+
+		</ui:define>
+
+		<ui:define name="scriptsArea">
+
+			<script id="map-controller" type="text/javascript"
+				data-url='/api/Map?destination=deliveryman'
+				src="../resources/js/map.js">
 			    </script>
-			    
-	    		<script 
-	    			type="text/javascript"
-	    			src='https://maps.googleapis.com/maps/api/js?key=#{infoBean.apiGmap}&amp;sensor=false&amp;callback=initMap'>
-	    		</script>   
-    		
-    		</ui:define>
-    		
-		</ui:composition>
-	
-	</h:body>
-	
+
+			<script type="text/javascript"
+				src='https://maps.googleapis.com/maps/api/js?key=#{infoBean.apiGmap}&amp;sensor=false&amp;callback=initMap'>
+	    		</script>
+
+		</ui:define>
+
+	</ui:composition>
+
+</h:body>
+
 </html>

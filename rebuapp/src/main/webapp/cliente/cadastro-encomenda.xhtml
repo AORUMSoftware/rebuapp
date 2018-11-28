@@ -1,9 +1,41 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui">
 
-	<ui:composition template="">
-	</ui:composition>
+<h:body>
+
+	<h2>Dados da solicitação de entrega</h2>
+	<h:form id="formCadastroEncomenda" enctype="multipart/form-data">
+		<p:growl autoUpdate="true" id="messages" />
+		<p:panelGrid styleClass="semBorda" columns="2">
+			<h:outputLabel value="Latitude da Origem: " />
+			<h:inputText converterId="javax.faces.Double" value="#{cadastroEncomendaBean.encomenda.latOrigem}" size="37" />
+			<br />
+			<h:outputLabel value="Longitude da Origem: " />
+			<h:inputText converterId="javax.faces.Double" value="#{cadastroEncomendaBean.encomenda.lngOrigem}"
+				size="37" />
+			<br />
+			<h:outputLabel value="Latitude do Destino: " />
+			<h:inputText converterId="javax.faces.Double" value="#{cadastroEncomendaBean.encomenda.latDestino}"
+				size="37" />
+			<br />
+			<h:outputLabel value="Longitude do Destino: " />
+			<h:inputText converterId="javax.faces.Double" value="#{cadastroEncomendaBean.encomenda.lngDestino}" size="37" />
+			<br />
+			<h:outputLabel value="Descrição da Encomenda: " />
+			<h:inputTextarea value="#{cadastroEncomendaBean.encomenda.descricaoEncomenda}" size="37" />
+			<br />
+		</p:panelGrid>
+
+		<br />
+		<br />
+
+		<h:commandButton action="#{cadastroEncomendaBean.gravar()}"
+			value="Gravar" />
+
+	</h:form>
+</h:body>
 </html>

@@ -18,13 +18,18 @@ import javax.persistence.Transient;
 @Entity
 
 @NamedQueries(value = {
-		@NamedQuery(name = "SolicitacaoEntrega.getAllByCustomer", query = "SELECT c FROM SolicitacaoEntrega c WHERE c.cliente = :cliente") })
+	@NamedQuery(name = "SolicitacaoEntrega.getAllByCustomer", query = "SELECT c FROM SolicitacaoEntrega c WHERE c.cliente = :cliente"), 
+	@NamedQuery(name = "SolicitacaoEntrega.getAllByDeliverman", query = "SELECT c FROM SolicitacaoEntrega c WHERE c.entregador = :entregador")
+})
 public class SolicitacaoEntrega {
 
 	private static final long serialVersionUID = 1L;
 
 	@Transient
 	public static final String GET_ALL_BY_CUSTOMER = "SolicitacaoEntrega.getAllByCustomer";
+
+	@Transient
+	public static final String GET_ALL_BY_DELIVERYMAN = "SolicitacaoEntrega.getAllByDeliverman";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,9 +41,6 @@ public class SolicitacaoEntrega {
 	private double latDestino;
 	private String data;
 	
-	@Column(columnDefinition = "bit default 0")
-	private boolean entregue;
-	
 	@Column(name = "descricao_encomenda")
 	private String descricaoEncomenda;
 
@@ -48,12 +50,6 @@ public class SolicitacaoEntrega {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Entregador entregador;
 
-	public boolean isEntregue() {
-		return entregue;
-	}
-	public void setEntregue(boolean entregue) {
-		this.entregue = entregue;
-	}
 	public String getDescricaoEncomenda() {
 		return descricaoEncomenda;
 	}
