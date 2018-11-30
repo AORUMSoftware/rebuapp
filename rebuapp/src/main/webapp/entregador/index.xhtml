@@ -7,7 +7,7 @@
 
 <h:body>
 
-	<ui:composition template="../layout/base_layout.xhtml">
+	<ui:composition template="../layout/base_layout-entregador.xhtml">
 
 		<ui:define name="customHead">
 			<link rel="stylesheet" href="../resources/css/map.css" />
@@ -15,24 +15,15 @@
 
 		<ui:define name="content">
 
-			<h3>Entregador Logado: #{entregadorLogadoBean.entregador.nome}</h3>
-			<h:form>
-				<h:commandLink action="#{entregadorLogadoBean.doLogout()}"
-					value="Sair" />
-			</h:form>
-
-			<h:form>
-				<h:commandLink action="/entregador/historico.xhtml?faces-redirect=true"
-					value="Histórico" />
-			</h:form>
-
 			<!--The div element for the map -->
 			<div id="map"></div>
 
-			<div id="order-list">
+			<div id="order-list" class="container">
 
 				<h:form
 					rendered="#{cadastroEncomendaBean.solicitacoesDelivery.size() > 0}">
+
+					<h5 class="h4">Lista de solicitações para aceitar</h5>
 
 					<h:dataTable id="sol-table" var="solicitacao"
 						value="#{cadastroEncomendaBean.solicitacoesDelivery}">
@@ -82,7 +73,6 @@
 
 			</div>
 
-
 		</ui:define>
 
 		<ui:define name="scriptsArea">
@@ -91,6 +81,10 @@
 				data-url='/api/Map?destination=deliveryman'
 				src="../resources/js/map.js">
 			    </script>
+
+			<script id="map-controller" type="text/javascript"
+				src="../resources/js/qs.js">
+		    </script>
 
 			<script type="text/javascript"
 				src='https://maps.googleapis.com/maps/api/js?key=#{infoBean.apiGmap}&amp;sensor=false&amp;callback=initMap'>

@@ -3,39 +3,92 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui">
 
 <h:body>
 
-	<h2>Dados da solicitação de entrega</h2>
-	<h:form id="formCadastroEncomenda" enctype="multipart/form-data">
-		<p:growl autoUpdate="true" id="messages" />
-		<p:panelGrid styleClass="semBorda" columns="2">
-			<h:outputLabel value="Latitude da Origem: " />
-			<h:inputText converterId="javax.faces.Double" value="#{cadastroEncomendaBean.encomenda.latOrigem}" size="37" />
-			<br />
-			<h:outputLabel value="Longitude da Origem: " />
-			<h:inputText converterId="javax.faces.Double" value="#{cadastroEncomendaBean.encomenda.lngOrigem}"
-				size="37" />
-			<br />
-			<h:outputLabel value="Latitude do Destino: " />
-			<h:inputText converterId="javax.faces.Double" value="#{cadastroEncomendaBean.encomenda.latDestino}"
-				size="37" />
-			<br />
-			<h:outputLabel value="Longitude do Destino: " />
-			<h:inputText converterId="javax.faces.Double" value="#{cadastroEncomendaBean.encomenda.lngDestino}" size="37" />
-			<br />
-			<h:outputLabel value="Descrição da Encomenda: " />
-			<h:inputTextarea value="#{cadastroEncomendaBean.encomenda.descricaoEncomenda}" size="37" />
-			<br />
-		</p:panelGrid>
+	<ui:composition template="../layout/base_layout.xhtml">
 
-		<br />
-		<br />
+		<ui:define name="customHead">
+			<link rel="stylesheet" href="../resources/css/map.css" />
+			<link href="resources/css/main.css" rel="stylesheet" />
+		</ui:define>
 
-		<h:commandButton action="#{cadastroEncomendaBean.gravar()}"
-			value="Gravar" />
+		<ui:define name="content">
+			<div class="container">
+				<div class="centerFormDivCadastro">
 
-	</h:form>
+					<h5 class="h4">Cadastrar nova solicitação de entrega</h5>
+
+					<div class="container">
+						<h:form id="formCadastroEncomenda" enctype="multipart/form-data">
+
+							<div class="row">
+								<div class="input-field col s12">
+									<h:outputLabel value="Latitude da Origem" />
+									<h:inputText converterId="javax.faces.Double"
+										value="#{cadastroEncomendaBean.encomenda.latOrigem}" size="37" />
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="input-field col s12">
+									<h:outputLabel value="Longitude da Origem" />
+									<h:inputText converterId="javax.faces.Double"
+										value="#{cadastroEncomendaBean.encomenda.lngOrigem}" size="37" />
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="input-field col s12">
+									<h:outputLabel value="Latitude do Destino" />
+									<h:inputText converterId="javax.faces.Double"
+										value="#{cadastroEncomendaBean.encomenda.latDestino}"
+										size="37" />
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="input-field col s12">
+									<h:outputLabel value="Longitude do Destino" />
+									<h:inputText converterId="javax.faces.Double"
+										value="#{cadastroEncomendaBean.encomenda.lngDestino}"
+										size="37" />
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="input-field col s12">
+									<h:outputLabel value="Descrição da Encomenda" />
+									<h:inputText
+										value="#{cadastroEncomendaBean.encomenda.descricaoEncomenda}"
+										size="37" />
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="input-field col s12">
+									<h:commandLink
+										styleClass="waves-effect waves-light btn btnCentralizar"
+										action="#{cadastroEncomendaBean.gravar()}" value="Gravar" />
+								</div>
+							</div>
+
+						</h:form>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+
+		<ui:define name="scriptsArea">
+
+			<script id="map-controller" type="text/javascript"
+				src="../resources/js/qs.js">
+		    </script>
+		    
+		</ui:define>
+
+	</ui:composition>
+
 </h:body>
 </html>

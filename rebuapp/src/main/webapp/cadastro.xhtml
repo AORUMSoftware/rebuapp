@@ -9,6 +9,12 @@
 
 	<ui:composition template="layout/base_layout.xhtml">
 
+		<ui:define name="header">
+		</ui:define>
+
+		<ui:define name="footer">
+		</ui:define>
+
 		<ui:define name="customHead">
 			<link href="resources/css/main.css" rel="stylesheet" />
 		</ui:define>
@@ -17,11 +23,12 @@
 			<div class="backlogin">
 				<div class="container">
 					<div class="centerFormDivCadastro">
-						<h2 class="marginTop10 centerText">Cadastro de Cliente</h2>
+						<h2 class="marginTop10 centerText">Cadastrar-se como Cliente</h2>
 						<div class="container">
 							<div class="row">
 								<h:form id="formCadastroCliente" enctype="multipart/form-data"
 									styleClass="col s12">
+									
 									<div class="row">
 										<div class="input-field col s6">
 											<h:inputText id="first_name"
@@ -71,6 +78,7 @@
 												action="#{clienteCadastroBean.cancelar()}" value="Cancelar" />
 										</div>
 									</div>
+									
 								</h:form>
 							</div>
 						</div>

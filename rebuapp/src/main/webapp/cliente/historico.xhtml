@@ -7,10 +7,12 @@
 
 	<ui:composition template="../layout/base_layout.xhtml">
 
+		<ui:define name="customHead">
+		</ui:define>
+
 		<ui:define name="content">
 
-
-			<div id="order-list">
+			<div id="order-list" class="container">
 
 				<h:form>
 
@@ -59,6 +61,16 @@
 			</div>
 
 		</ui:define>
+		
+		<ui:define name="scriptsArea">
+
+			<script id="map-controller" type="text/javascript"
+				src="../resources/js/qs.js">
+		    </script>
+
+		</ui:define>
+		
+		<ui:define name="footer"></ui:define>
 
 	</ui:composition>
 

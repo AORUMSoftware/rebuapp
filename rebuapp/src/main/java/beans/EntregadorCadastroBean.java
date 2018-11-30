@@ -36,7 +36,7 @@ public class EntregadorCadastroBean {
 	}
 	
 	public String cancelar() {
-		return "/login.xhtml?faces-redirect=true";
+		return "/login-entregador.xhtml?faces-redirect=true";
 	}
 	
 	public Entregador getEntregador() {

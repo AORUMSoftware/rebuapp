@@ -10,33 +10,29 @@
 		<nav class="nav-extended">
 		<div class="nav-wrapper cyan">
 			<a href="#" class="brand-logo" style="margin-left: 20px;">Bem-Vindo,
-				#{clienteLogadoBean.cliente.nome}!</a> <a href="#"
+				#{entregadorLogadoBean.entregador.nome}!</a> <a href="#"
 				data-target="mobile-demo" class="sidenav-trigger"><i
 				class="material-icons">menu</i></a>
-			<ul id="nav-mobile" class="right hide-on-med-and-down"
-				style="margin-right: 20px;">
+			<ul id="nav-mobile" class="right hide-on-med-and-down" style="margin-right: 20px;">
+
 				<li><h:form>
-						<h:commandLink action="/cliente/index.xhtml?faces-redirect=true">
+						<h:commandLink
+							action="/entregador/index.xhtml?faces-redirect=true">
 							<i data-position="bottom" data-tooltip="Início"
 								class="tooltipped material-icons"> home </i>
 						</h:commandLink>
 					</h:form></li>
+
 				<li><h:form>
 						<h:commandLink
-							action="#{clienteLogadoBean.novaSoliciacaoEntrega()}">
-							<i data-position="bottom" data-tooltip="Criar solicitação"
-								class="tooltipped material-icons"> playlist_add </i>
-						</h:commandLink>
-					</h:form></li>
-				<li><h:form>
-						<h:commandLink
-							action="/cliente/historico.xhtml?faces-redirect=true">
+							action="/entregador/historico.xhtml?faces-redirect=true">
 							<i data-position="bottom" data-tooltip="Histórico"
 								class="tooltipped material-icons"> history </i>
 						</h:commandLink>
 					</h:form></li>
+
 				<li><h:form>
-						<h:commandLink action="#{clienteLogadoBean.doLogout()}">
+						<h:commandLink action="#{entregadorLogadoBean.doLogout()}">
 							<i data-position="bottom" data-tooltip="Sair"
 								class="tooltipped material-icons"> exit_to_app </i>
 						</h:commandLink>
@@ -50,31 +46,27 @@
 	<ul class="sidenav" id="mobile-demo">
 
 		<p style="margin-left: 20px; font-weight: bold;">RebuApp - v1.0.0</p>
+
 		<li><h:form>
 				<h:commandLink
 					style="font-weight:bold;color:black;width:96%;margin-left:2%;margin-right:2%;"
 					styleClass="btn waves-effect waves-light white"
-					action="/cliente/index.xhtml?faces-redirect=true" value="Início" />
+					action="/entregador/index.xhtml?faces-redirect=true" value="Início" />
 			</h:form></li>
+
 		<li><h:form>
 				<h:commandLink
 					style="font-weight:bold;color:black;width:96%;margin-left:2%;margin-right:2%;"
 					styleClass="btn waves-effect waves-light white"
-					action="#{clienteLogadoBean.novaSoliciacaoEntrega()}"
-					value="Criar nova solicitação" />
-			</h:form></li>
-		<li><h:form>
-				<h:commandLink
-					style="font-weight:bold;color:black;width:96%;margin-left:2%;margin-right:2%;"
-					styleClass="btn waves-effect waves-light white"
-					action="/cliente/historico.xhtml?faces-redirect=true"
+					action="/entregador/historico.xhtml?faces-redirect=true"
 					value="Histórico" />
 			</h:form></li>
+
 		<li><h:form>
 				<h:commandLink
 					style="font-weight:bold;color:black;width:96%;margin-left:2%;margin-right:2%;"
 					styleClass="btn waves-effect waves-light white"
-					action="#{clienteLogadoBean.doLogout()}" value="Sair" />
+					action="#{entregadorLogadoBean.doLogout()}" value="Sair" />
 			</h:form></li>
 
 	</ul>

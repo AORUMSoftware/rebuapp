@@ -1,36 +1,84 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"> 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 
-	<h:head></h:head> 
-	<h:body>
-	
-		<h2>Cadastro de Entregador</h2>
-        <h:form id="formCadastroEntregador" enctype="multipart/form-data">    
-        	<p:growl autoUpdate="true" id="messages" />
-        	
-            <p:panelGrid styleClass="semBorda" columns="2">       
-			       
-				<h:outputLabel value="Nome: " />
-				<h:inputText value="#{entregadorCadastroBean.entregador.nome}" size="37" />
-				<br/>
-				<h:outputLabel value="Email: " />
-				<h:inputText value="#{entregadorCadastroBean.entregador.email}" size="37" />
-				<br/>
-				<h:outputLabel value="Senha: " />
-				<h:inputSecret value="#{entregadorCadastroBean.entregador.senha}" size="37" />
-				<br/>
-		   	</p:panelGrid>
-		
-		   	<br />
-		   	<br />
-                
-			<h:commandButton action="#{entregadorCadastroBean.gravar()}" value="Gravar" />
-			<h:commandButton action="#{entregadorCadastroBean.cancelar()}" value="Cancelar" />
-	
-		</h:form>
-	</h:body>  
+<h:body>
+
+	<ui:composition template="layout/base_layout.xhtml">
+
+		<ui:define name="header">
+		</ui:define>
+
+		<ui:define name="footer">
+		</ui:define>
+
+		<ui:define name="customHead">
+			<link href="resources/css/main.css" rel="stylesheet" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div class="backlogin">
+				<div class="container">
+					<div class="centerFormDivCadastro">
+						<h2 class="marginTop10 centerText">Cadastrar-se como
+							Entregador</h2>
+						<div class="container">
+							<div class="row">
+								<h:form id="formCadastroEntregador"
+									enctype="multipart/form-data" styleClass="col s12">
+
+									<div class="row">
+										<div class="input-field col s12">
+											<label for="first_name">Nome</label>
+											<h:inputText id="first_name" styleClass="validate"
+												value="#{entregadorCadastroBean.entregador.nome}" size="37" />
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="input-field col s12">
+											<label for="email">Email</label>
+											<h:inputText id="email" styleClass="validate"
+												value="#{entregadorCadastroBean.entregador.email}" size="37" />
+
+										</div>
+									</div>
+
+									<div class="row">
+
+										<div class="input-field col s12">
+											<label for="senha">Senha</label>
+											<h:inputSecret id="senha" styleClass="validate"
+												value="#{entregadorCadastroBean.entregador.senha}" size="37" />
+
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col s6">
+											<h:commandLink
+												styleClass="waves-effect waves-light btn btnCentralizar"
+												action="#{entregadorCadastroBean.gravar()}" value="Gravar" />
+										</div>
+										<div class="col s6">
+											<h:commandLink
+												styleClass="waves-effect waves-light btn btnCentralizar"
+												action="#{entregadorCadastroBean.cancelar()}" value="Cancelar" />
+										</div>
+									</div>
+									
+								</h:form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+
+	</ui:composition>
+
+</h:body>
 </html>
